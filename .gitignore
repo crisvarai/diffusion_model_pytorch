@@ -1,2 +1,8 @@
+# Dataset
 stanford_cars
+
+# Saved weights
 weights
+
+# Compiled python
+__pycache__/
