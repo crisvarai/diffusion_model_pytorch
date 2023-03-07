@@ -1,0 +1,9 @@
+certifi==2022.9.24
+conda==22.9.0
+jupyter==1.0.0
+matplotlib==3.6.0
+numpy==1.23.4
+pandas==1.5.0
+pywin32==303
+torch==1.12.1+cu116
+tqdm==4.64.1
