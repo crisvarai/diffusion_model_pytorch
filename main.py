@@ -1,7 +1,6 @@
 """To train a diffusion model."""
 
 import torch
-import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 from train.fit import fit
