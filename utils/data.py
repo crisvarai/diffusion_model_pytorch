@@ -1,3 +1,4 @@
+import torch
 import torchvision
 from torchvision import transforms
 from torch.utils.data import ConcatDataset
@@ -14,3 +15,8 @@ def transform_dataset(img_size, path):
     test = torchvision.datasets.StanfordCars(root=path, download=True, transform=data_transforms, split='test')
                                          
     return ConcatDataset([train, test])
+
+def load_model(model, weights_path):
+    checkpoint = torch.load(weights_path)
+    model.load_state_dict(checkpoint)
+    return model

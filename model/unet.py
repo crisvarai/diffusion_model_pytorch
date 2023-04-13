@@ -1,5 +1,6 @@
 import math
 import torch
+import logging
 from torch import nn
 
 class Block(nn.Module):
@@ -93,4 +94,5 @@ if __name__ == "__main__":
     t = torch.randint(0, T, (BATCH_SIZE,)).long()
     unet_model = Unet()
     out = unet_model(x, t)
-    print(out.shape)
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s-%(name)s-%(levelname)s-%(message)s")
+    logging.info(out.shape)

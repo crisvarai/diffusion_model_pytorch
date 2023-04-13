@@ -1,4 +1,5 @@
 import torch
+import logging
 import numpy as np
 import torch.nn.functional as F
 from tqdm import tqdm
@@ -33,12 +34,13 @@ def fit(model, dataloader, img_size, batch_size, epochs, lr, T, weights_path, de
             optimizer.step()
             bar.set_description(f"Loss {mean_tl}")
 
-            if epoch % 5 == 0 and step == 0 and epoch != 0:
-                print(f"\nEpoch {epoch} | step {step:03d} Loss: {mean_tl}")
-                torch.save(model.state_dict(), weights_path)
-                print("WEIGHTS-ARE-SAVED")
-                # sample_plot_image(img_size, T, model, device, \
-                #                   betas, sqrt_recip_alphas, sqrt_one_minus_alphas_cumprod, posterior_variance)
-            
+        if epoch % 5 == 0 and epoch != 0:
+            logging.info(f"Epoch {epoch} | step {step:03d} Loss: {mean_tl}")
+            torch.save(model.state_dict(), weights_path)
+            logging.info("WEIGHTS-ARE-SAVED")
+            logging.info("Generate images...")
+            sample_plot_image(img_size, T, model, device, \
+                              betas, sqrt_recip_alphas, sqrt_one_minus_alphas_cumprod, posterior_variance)
+            logging.info("Saved!")
         train_losses.append(mean_tl)
     return train_losses
